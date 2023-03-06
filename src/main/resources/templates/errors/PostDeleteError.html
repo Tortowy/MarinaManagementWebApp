@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Error Page</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+
+<div style="margin-left: 20%; margin-top: 10%">
+<div style="float: left">
+    <div>
+        <b><p style="font-size:50px">Error</p></b>
+    </div>
+    <div>
+        <p style="font-size:35px">Nie można usunąć poczty nr: <p th:text="${nrPoczty}" style="font-size:35px"> </p> </p>
+    <p style="font-size:35px">
+        Ponieważ naruszyłoby to integralność bazy danych.
+    </p>
+    </div>
+    <a class="btn btn-primary" role="button" type="button" href="/owner/post/post_management">Powrót</a></div>
+
+    <img th:src="@{/img/error.png}" style="width: 400px; height: 350px; float: left; margin-left: 50px">
+</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

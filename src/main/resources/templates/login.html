@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login Page</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/css/navbar-style.css}"/>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top"> -->
+<nav class="navbar navbar-expand-lg navbar-custom static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/"><img th:src="@{/img/boat-logo-w.png}" width="70" height="70" class="d-inline-block align-middle" alt="">Z wiatrem - logowanie</a>
+        <!-- <a class="navbar-brand" href="/">Z Wiatrem - logowanie</a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a th:href="@{/index}" class="btn btn-sm btn-outline-secondary" type="button" role="button"> Strona główna </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Zaloguj
+                        <!-- <span class="sr-only">(current)</span> -->
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+
+        <div style="margin-left: 30%; margin-bottom: auto; width: 400px;">
+
+            <form method="post" th:action="@{/login}">
+
+                <img th:src="@{/img/boat-logo.png}" style="width: 400px; height: 350px">
+
+                <div>
+                    <label for="login">Login:</label>
+                    <input id="login" type="text" placeholder="Podaj login" autocomplete="off" class="form-control" name="username"/>
+                </div>
+
+                <div style="margin-bottom: 15px">
+                    <label for="password">Hasło:</label>
+                    <input id="password" type="password" placeholder="Podaj hasło" autocomplete="off" class="form-control" name="password"/>
+                </div>
+
+                <div th:if="${param.error}" style="color:red; margin-bottom:15px">
+                    ERROR: Invalid username or password!
+                </div>
+
+                <button class="btn btn-primary" type="submit" value="Sign In">Zaloguj</button>
+            </form>
+
+
+
+        </div>
+
+</div>
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

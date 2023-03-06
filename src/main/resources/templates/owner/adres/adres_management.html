@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Adres Management</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/css/navbar-style.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/tables-style.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/managing-buttons.css}"/>
+
+
+    <style>
+        body{
+            background-image: url([[@{/img/lodka.jpg}]]);
+            background-repeat: repeat;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<section>
+    <nav class="navbar navbar-expand-lg navbar-custom static-top">
+
+
+
+        <div class="container">
+            <a class="navbar-brand" href="/">Z wiatrem - Baza Danych - Adresy</a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+
+                    <form class="form-inline" method="post" th:action="@{/index}">
+
+                        <li th:if="${#httpServletRequest.remoteUser != null}">
+                            <a class="nav-link" th:inline="text"  style="color: white; ">Jesteś zalogowany jako <b
+                                    style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a th:href="@{/index}" class="btn btn-sm btn-outline-secondary" type="button" role="button"> Strona główna </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a th:href="@{/main}" class="btn btn-sm btn-outline-secondary" type="button" role="button"> Panel zarządzania </a>
+                        </li>
+
+                        <li class="nav-item" th:if="${#httpServletRequest.remoteUser == null}">
+                            <a th:href="@{/main}" class="btn btn-outline-success" type="button" role="button"> Zaloguj </a>
+                        </li>
+
+                        <li th:if="${#httpServletRequest.remoteUser != null}"><button class="btn btn-outline-success logout" type="submit" onclick="successfullyLogout()" value="Sign Out">Wyloguj się</button></li>
+
+
+
+                    </form>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<main>
+
+    <section>
+
+
+        <div>
+
+            <table class="content-table"> <!-- border – obramowanie, cellpadding – rozmiar komórki -->
+                <!-- Table header -->
+                <thead>
+                <tr> <!-- Table row -->
+                    <th>Nr_adresu</th> <!-- Table column -->
+                    <th>Miasto</th>
+                    <th>Ulica</th>
+                    <th>Nr_domu</th>
+                    <th>Nr_poczty</th>
+                    <th>Akcja</th>
+                </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                <tr th:each = "Adresy : ${adresyList}">
+                    <td th:text = "${Adresy.nrAdresu}">nrAdresu</td>
+                    <td th:text = "${Adresy.miasto}">miasto</td>
+                    <td th:text = "${Adresy.ulica}">ulica</td>
+                    <td th:text = "${Adresy.nrDomu}">nrDomu</td>
+                    <td th:text = "${Adresy.nrPoczty}">nrPoczty</td>
+                    <td>
+                        <a role="button" type="button" class="btn btn-secondary btn-rounded" th:href="@{'/owner/adres/edit_adres_form/' + ${Adresy.nrAdresu}}">Edytuj</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a role="button" type="button" class="btn btn-secondary btn-rounded" th:href="@{'/owner/adres/delete_adres/' + ${Adresy.nrAdresu}}">Usuń</a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+        <div class="footer">
+
+
+            <a role="button" type="button" class="enter" href="/owner/adres/owner_adding_adres" style="text-decoration: none;">  Dodaj nowy adres </a>
+
+        </div>
+
+
+    </section>
+
+
+
+</main>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

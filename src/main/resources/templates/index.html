@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome Page</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/css/navbar-style.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/managing-buttons.css}"/>
+
+    <style th:inline="text">
+
+        .img-gallery{
+
+            width: 80%;
+            margin: 100px auto 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-gap: 30px;
+
+
+        }
+
+        .img-gallery img{
+            width: 100%;
+            cursor: pointer;
+
+        }
+
+        .img-gallery img:hover{
+            transform: scale(150%);
+            border-radius: 20px;
+            box-shadow: 0 32px 75px rgba(68, 77 ,136 ,0.2);
+            transition: 0.3s;
+        }
+
+        .log {
+            border-radius: 4px;
+            background-color: #353b83;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding-left: 100px;
+            padding-right: 100px;
+            margin-top: 200px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .log span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .log span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .log:hover span {
+            padding-right: 25px;
+            color: #16bb16;
+        }
+
+        .log:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+
+
+
+        .boat{
+            background-image: url([[@{/img/background.jpg}]]);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-size: cover;
+            color: white;
+            box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-custom static-top">
+    <div class="container">
+    <a class="navbar-brand" href="/"><img th:src="@{/img/boat-logo-w.png}" width="70" height="70" class="d-inline-block align-middle" alt="">Z wiatrem</a>
+
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                <form class="form-inline" method="post" th:action="@{/index}">
+
+                    <li th:if="${#httpServletRequest.remoteUser != null}">
+                        <a class="nav-link" th:inline="text"  style="color: white; ">Jesteś zalogowany jako <b
+                                style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Strona Główna
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/main}" class="btn btn-sm btn-outline-secondary" type="button" role="button"> Panel zarządzania </a>
+                </li>
+
+                <li class="nav-item" th:if="${#httpServletRequest.remoteUser == null}">
+                    <a th:href="@{/main}" class="btn btn-outline-success" type="button" role="button"> Zaloguj </a>
+                </li>
+
+                        <li th:if="${#httpServletRequest.remoteUser != null}"><button class="btn btn-outline-success logout" type="submit" onclick="successfullyLogout()" value="Wyloguj się">Wyloguj się</button></li>
+
+
+
+                </form>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<main>
+
+
+    <section>
+        <div class="boat">
+            <div class="container">
+
+                <h1 style="font-size: 40px"> Witaj na stronie bazy danych "Z wiatrem" </h1>
+
+                <p style="font-size: 30px"> Najlepszej aplikacji do zarządzania bazami danych dla twojej mariny</p>
+
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section>
+        <div style="margin-top: 100px; margin-bottom: 50px">
+            <h1 style="margin-left: 20%; font-size: 30px"> Zaloguj się już teraz i zacznij korzystać z najlepszej żeglarskiej bazy danych</h1>
+            <p style="margin-left: 20%; width: 60%; font-size: 20px; word-wrap: break-word">
+                Kliknij tutaj lub w guzik w prawym górnym rogu ekranu
+            </p>
+
+                <div style="margin-left: 20%">
+
+                    <a class="log" th:href="@{/main}" type="button" role="button" style="margin-top: 40px"><span>Zaloguj się już teraz </span></a>
+
+                </div>
+
+
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+    <section>
+        <div style=" margin-bottom: 100px">
+
+            <h1 style="margin-left: 20%; font-size: 30px"> Dlaczego nasza firma?</h1>
+            <br/>
+            <p style="margin-left: 20%; width: 60%; font-size: 20px; word-wrap: break-word">
+                Nasza baza danych marin żeglarskich to niezbędnik dla każdego miłośnika żeglarstwa. Zawiera ona szczegółowe informacje o marinach i portach na całym świecie, w tym dane o pracownikach, klientach oraz wszystkich jednostkach. Dzięki przejrzystemu i łatwemu w użyciu interfejsowi, użytkownicy mogą szybko i łatwo znaleźć potrzebne im informacje.
+
+                Baza danych jest regularnie aktualizowana, aby zapewnić użytkownikom najnowsze i najdokładniejsze dane.
+
+                Dostęp do bazy danych jest dostępny dla wszystkich zainteresowanych, bez subskrypcji premium. Jeśli jesteś żeglarzem lub planujesz swoją przyszłą podróż żeglarską, ta baza danych jest niezbędnym narzędziem dla Ciebie.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+
+    <section>
+
+        <h1 style="margin-left: 20%; font-size: 30px"> To tylko niektóre z firm używających naszą bazę danych: </h1>
+
+
+                <div class="img-gallery" style="margin-bottom: 100px">
+
+
+
+                    <img th:src="@{/img/marina1.jpg}">
+                    <img th:src="@{/img/marina2.jpg}">
+                    <img th:src="@{/img/marina3.jpg}">
+                    <img th:src="@{/img/marina4.jpg}">
+                    <img th:src="@{/img/marina5.jpg}">
+                    <img th:src="@{/img/marina6.png}">
+
+
+
+
+                </div>
+
+
+    </section>
+
+</main>
+
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>
+

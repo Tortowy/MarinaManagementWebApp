@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edytuj Adres</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/css/navbar-style.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/tables-style.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/managing-buttons.css}"/>
+
+    <style>
+        body{
+            background-image: url([[@{/img/lodka.jpg}]]);
+            background-repeat: repeat;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<section>
+    <nav class="navbar navbar-expand-lg navbar-custom static-top">
+
+
+
+        <div class="container">
+            <a class="navbar-brand" href="/">Z wiatrem - Baza Danych - Adresy Edycja</a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+
+                    <form class="form-inline" method="post" th:action="@{/index}">
+
+                        <li th:if="${#httpServletRequest.remoteUser != null}">
+                            <a class="nav-link" th:inline="text"  style="color: white; ">Jesteś zalogowany jako <b
+                                    style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a th:href="@{/index}" class="btn btn-sm btn-outline-secondary" type="button" role="button"> Strona główna </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a th:href="@{/main}" class="btn btn-sm btn-outline-secondary" type="button" role="button"> Panel zarządzania </a>
+                        </li>
+
+                        <li class="nav-item" th:if="${#httpServletRequest.remoteUser == null}">
+                            <a th:href="@{/main}" class="btn btn-outline-success" type="button" role="button"> Zaloguj </a>
+                        </li>
+
+                        <li th:if="${#httpServletRequest.remoteUser != null}"><button class="btn btn-outline-success logout" type="submit" onclick="successfullyLogout()" value="Sign Out">Wyloguj się</button></li>
+
+
+
+                    </form>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<main>
+
+    <section>
+
+
+        <div>
+
+            <form action="#" th:action="@{/updateAdres}" th:object="${adresy}" method="post">
+                <!--Table-->
+                <table class="content-table">
+                    <!--Table row -->
+
+                    <thead>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+
+                    </tr>
+                    </thead>
+
+                    <tr>
+                        <td> Nr Adresu:  </td>
+                        <td> <input type="text" required th:field="*{nrAdresu}" readonly = "readonly"></td>
+                    </tr>
+
+
+                    <tr>
+                        <td> Miasto:  </td>
+                        <td> <input type="text" required th:maxlength="25"  th:field="*{miasto}"></td>
+                    </tr>
+
+                    <tr>
+                        <td> Ulica: </td>
+                        <td> <input type="text" required th:maxlength="25" th:field="*{ulica}"></td>
+                    </tr>
+
+                    <tr>
+                        <td> Nr Domu: </td>
+                        <td> <input type="text" required th:maxlength="4" th:field="*{nrDomu}"></td>
+                    </tr>
+
+                    <tr>
+                        <td> Nr Poczty: </td>
+                        <td>
+                            <div class="form-group blu-margin">
+                                <select class="form-control" th:field="${adresy.nrPoczty}"  id="dropOperator">
+                                    <option th:each="poczta : ${pocztyList}" th:value="${poczta.nrPoczty}" th:text="${poczta.nrPoczty}+' | KodPoczty: '+${poczta.kodPoczty}+' | MiejscowoscPoczty: '+${poczta.miejscowoscPoczty}"></option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+
+                </table>
+
+
+                <div class="footer">
+
+                    <button role="button"  class="enter" type="submit"> Zapisz </button>
+
+
+                </div>
+
+
+            </form>
+
+
+
+
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+</main>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

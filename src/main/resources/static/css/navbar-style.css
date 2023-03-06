@@ -1,0 +1,119 @@
+.navbar-custom {
+    background-color: #353b83;
+
+}
+.navbar-brand {
+    font-size: 50px;
+    color: #ffffff;
+    font-family:Onyx !important;
+    transition: 0.3s;
+    margin: 3px;
+}
+
+.navbar-brand:hover {
+    font-size: 50px;
+    color: #bbbaba;
+    font-family:Onyx !important;
+    margin: 3px;
+}
+
+.btn-outline-success{
+    border-width: 2px;
+    font-size: 20px;
+    color:white;
+    padding: 4px 8px;
+    text-align: center;
+    border-color: white;
+    transition: 0.3s;
+    margin: 3px;
+}
+
+.btn-outline-success:hover{
+    border-width: 2px;
+    border-color: #50b650;
+    background-color: #353b83;
+    color: #50b650;
+    margin: 3px;
+}
+
+
+.btn.btn-outline-success.logout:focus{
+    border-width: 2px;
+    background-color: #de3031;
+    border-color: #de3031;
+    color: white;
+    border-color: #de3031;
+    margin: 3px;
+    box-shadow: none;
+    outline: none;
+    text-shadow: none;
+}
+
+.btn.btn-outline-success.logout:active{
+    border-width: 2px;
+    background-color: #de3031;
+    border-color: #de3031;
+    color: white;
+    border-color: #de3031;
+    margin: 3px;
+    box-shadow: none;
+    outline: none;
+    text-shadow: none;
+}
+
+.btn.btn-outline-success.logout:hover{
+    border-width: 2px;
+    border-color: #de3031;
+    background-color: #353b83;
+    color: #de3031;
+    margin: 3px;
+    box-shadow: none;
+    outline: none;
+}
+
+
+
+
+
+
+.btn.btn-sm.btn-outline-secondary{
+    border-width: 2px;
+    font-size: 20px;
+    color:white;
+    padding: 4px 8px;
+    text-align: center;
+    border-color: white;
+    transition: 0.1s;
+    margin: 3px;
+
+}
+
+
+
+
+.btn.btn-sm.btn-outline-secondary.btn-outline-secondary:hover{
+    border-width: 2px;
+    font-size: 20px;
+    color:white;
+    padding: 4px 8px;
+    text-align: center;
+    border-color: #353b83;
+    transition: 0.3s;
+    background-color: #353b83;
+
+    margin: 3px;
+}
+
+.active .nav-link{
+    font-size: 20px;
+    color: #353b83;
+    text-align: center;
+    border-color: #ffffff;
+    transition: 0.3s;
+    background-color: #ffffff;
+    border-radius: 2px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 3px;
+    padding: 6px 8px;
+}
